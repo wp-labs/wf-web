@@ -1,0 +1,771 @@
+<!doctype html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta
+            name="description"
+            content="WarpFusion 是面向安全分析场景的实时关联计算引擎，以更轻量的依赖、更快的执行效率、更易维护的工具链和更高效表达的 DSL 支撑实时关联检测。"
+        />
+        <title>WarpFusion - 实时关联计算引擎</title>
+        <link rel="stylesheet" href="styles.css" />
+    </head>
+    <body>
+        <header class="header">
+            <div class="container header-inner">
+                <a href="#top" class="logo">
+                    <span class="logo-mark">WF</span>
+                    <span>WarpFusion</span>
+                </a>
+                <nav class="nav" id="mainNav">
+                    <a href="#features" class="nav-link">关键特性</a>
+                    <a href="#language" class="nav-link">WFL</a>
+                    <a href="#toolchain" class="nav-link">工具链</a>
+                    <a href="#runtime" class="nav-link">运行时</a>
+                    <a href="#model" class="nav-link">三文件模型</a>
+                    <a href="#scenarios" class="nav-link">场景</a>
+                </nav>
+                <div class="btn-group desktop-only">
+                    <a href="#quickstart" class="btn btn-secondary btn-xs"
+                        >快速开始</a
+                    >
+                    <a href="#docs" class="btn btn-secondary btn-xs">文档地图</a>
+                </div>
+                <button
+                    class="mobile-menu-btn"
+                    id="mobileMenuBtn"
+                    aria-label="菜单"
+                >
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+        </header>
+
+        <section id="top" class="hero">
+            <div class="hero-bg"></div>
+            <div class="container">
+                <div class="hero-content">
+                    <div class="hero-badge">
+                        <span>WarpFusion</span>
+                        <span>实时关联检测引擎</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="hero-line-1"
+                            >对数据的关联实时检测，
+                            <span class="gradient-text">快如闪电。</span></span
+                        >
+                    </h1>
+                    <div class="hero-summary">
+                        <div class="hero-summary-tags">
+                            <span>轻量，更少依赖</span>
+                            <span>更快，更少资源</span>
+                            <span>工具链，更易维护</span>
+                            <span>DSL，更高效表达</span>
+                        </div>
+                    </div>
+                    <p class="hero-description">
+                        面向安全事件关联、风险告警归并与实体行为分析。
+                        让规则编写、离线验证和运行部署使用同一套语义，减少从想法到上线之间的断层。
+                    </p>
+
+                    <div class="btn-group hero-actions">
+                        <a href="#features" class="btn btn-primary">查看关键特性</a>
+                        <a href="#quickstart" class="btn btn-secondary">快速开始</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="features" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">关键特性</h2>
+                    <p class="section-subtitle">
+                        更快把规则写出来，更早完成验证，也更稳地跑到线上。
+                    </p>
+                </div>
+                <div class="features-shell">
+                    <div class="feature-stack">
+                        <article class="feature-band feature-band-primary feature-tone-blue">
+                            <div class="feature-main">
+                                <div class="feature-head">
+                                    <span class="feature-index">01</span>
+                                    <span class="feature-meta">规则语言</span>
+                                </div>
+                                <h3 class="feature-title"><span class="feature-keyword">WFL</span> 面向实时关联检测</h3>
+                                <p class="feature-description">
+                                    用专用 DSL 表达阈值判断、时序链、缺失检测、快照关联和风险评分，而不是让规则散落在通用 SQL 或脚本里。
+                                </p>
+                                <p class="feature-impact">
+                                    <span class="feature-impact-label">价值</span>
+                                    让规则语义稳定、可解释，也便于评审。
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="feature-band feature-tone-cyan">
+                            <div class="feature-main">
+                                <div class="feature-head">
+                                    <span class="feature-index">02</span>
+                                    <span class="feature-meta">运行一致性</span>
+                                </div>
+                                <h3 class="feature-title"><span class="feature-keyword">实时接入</span>与离线回放统一</h3>
+                                <p class="feature-description">
+                                    `daemon` 处理在线流量，`batch`
+                                    用于文件回放和复盘，让线上规则和离线验证共用同一套执行语义。
+                                </p>
+                                <p class="feature-impact">
+                                    <span class="feature-impact-label">价值</span>
+                                    规则上线前能先回放验证，而不是靠生产试错。
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="feature-band feature-tone-green">
+                            <div class="feature-main">
+                                <div class="feature-head">
+                                    <span class="feature-index">03</span>
+                                    <span class="feature-meta">工具链</span>
+                                </div>
+                                <h3 class="feature-title"><span class="feature-keyword">工具链</span>闭环</h3>
+                                <p class="feature-description">
+                                    `wfusion config`、`wfl`、`wfgen`
+                                    组成配置诊断、规则开发、数据生成和契约验证的完整链路。
+                                </p>
+                                <p class="feature-impact">
+                                    <span class="feature-impact-label">价值</span>
+                                    把配置排障、规则验证和样本生成放进同一工作流。
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="feature-band feature-tone-indigo">
+                            <div class="feature-main">
+                                <div class="feature-head">
+                                    <span class="feature-index">04</span>
+                                    <span class="feature-meta">执行模型</span>
+                                </div>
+                                <h3 class="feature-title"><span class="feature-keyword">窗口中心</span>的运行时</h3>
+                                <p class="feature-description">
+                                    规则不是直接消费消息，而是围绕窗口
+                                    读取增量数据，watermark、lateness 和 eviction
+                                    都真正参与执行。
+                                </p>
+                                <p class="feature-impact">
+                                    <span class="feature-impact-label">价值</span>
+                                    时间语义、缓存和驱逐策略不是外挂，而是执行核心。
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="feature-band feature-tone-purple">
+                            <div class="feature-main">
+                                <div class="feature-head">
+                                    <span class="feature-index">05</span>
+                                    <span class="feature-meta">逐条富化</span>
+                                </div>
+                                <h3 class="feature-title">支持<span class="feature-keyword">逐条富化</span></h3>
+                                <p class="feature-description">
+                                    除了窗口规则，还支持 `on each`
+                                    做单条事件整理和打分，再由下游规则继续聚合和关联。
+                                </p>
+                                <p class="feature-impact">
+                                    <span class="feature-impact-label">价值</span>
+                                    适合把逐条语义整理和下游聚合拆层处理。
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="feature-band feature-tone-orange">
+                            <div class="feature-main">
+                                <div class="feature-head">
+                                    <span class="feature-index">06</span>
+                                    <span class="feature-meta">部署形态</span>
+                                </div>
+                                <h3 class="feature-title"><span class="feature-keyword">轻量</span>单机部署</h3>
+                                <p class="feature-description">
+                                    不依赖 Kafka、外部数据库或重型控制面，适合规则研发、实验环境、单机场景和早期生产部署。
+                                </p>
+                                <p class="feature-impact">
+                                    <span class="feature-impact-label">价值</span>
+                                    先把关联检测跑起来，再决定是否扩大部署面。
+                                </p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="language" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">WFL 核心表达能力</h2>
+                    <p class="section-subtitle">
+                        WFL 不是通用查询语言，而是把实时检测规则拆成几个稳定、清晰、可组合的核心能力。
+                    </p>
+                </div>
+
+                <div class="language-feature-list">
+                    <div class="language-feature">
+                        <div class="language-feature-copy">
+                            <div class="language-chip">events</div>
+                            <h3 class="card-title">事件绑定</h3>
+                            <p class="language-copy">
+                                <span class="language-label">作用</span>
+                                把输入 window 和过滤条件绑定成规则里的事件别名。
+                            </p>
+                            <p class="language-copy">
+                                <span class="language-label">特点</span>
+                                先把“看什么事件”定义清楚，再进入后续匹配和判断。
+                            </p>
+                        </div>
+                        <div class="code-block language-code">
+                            <div class="code-header">
+                                <span class="code-title">Event Binding</span>
+                                <span class="code-badge wpl">events</span>
+                            </div>
+                            <pre class="ts-code"><code class="language-wfl">events <span class="ts-punctuation-bracket">{</span>
+    fail <span class="ts-punctuation-delimiter">:</span> auth_events <span class="ts-operator">&amp;&amp;</span> action <span class="ts-operator">==</span> <span class="ts-string">"failed"</span>
+    scan <span class="ts-punctuation-delimiter">:</span> fw_events <span class="ts-operator">&amp;&amp;</span> dport <span class="ts-punctuation-bracket">&gt;</span> <span class="ts-number">0</span>
+<span class="ts-punctuation-bracket">}</span></code></pre>
+                        </div>
+                    </div>
+
+                    <div class="language-feature">
+                        <div class="language-feature-copy">
+                            <div class="language-chip">match&lt;key:duration&gt;</div>
+                            <h3 class="card-title">时序匹配</h3>
+                            <p class="language-copy">
+                                <span class="language-label">作用</span>
+                                描述按实体、按时间窗口的关联检测。
+                            </p>
+                            <p class="language-copy">
+                                <span class="language-label">特点</span>
+                                适合表达“先发生 A，再发生 B”或“5 分钟内累计达到阈值”。
+                            </p>
+                        </div>
+                        <div class="code-block language-code">
+                            <div class="code-header">
+                                <span class="code-title">Temporal Match</span>
+                                <span class="code-badge vrl">match</span>
+                            </div>
+                            <pre class="ts-code"><code class="language-wfl">match<span class="ts-punctuation-bracket">&lt;</span>sip<span class="ts-punctuation-delimiter">:</span><span class="ts-number">5m</span><span class="ts-punctuation-bracket">&gt;</span> <span class="ts-punctuation-bracket">{</span>
+    <span class="ts-keyword">on</span> <span class="ts-keyword">event</span> <span class="ts-punctuation-bracket">{</span>
+        fail <span class="ts-operator">|</span> count <span class="ts-operator">&gt;=</span> <span class="ts-number">3</span><span class="ts-punctuation-delimiter">;</span>
+        scan <span class="ts-operator">|</span> count <span class="ts-operator">&gt;=</span> <span class="ts-number">1</span><span class="ts-punctuation-delimiter">;</span>
+    <span class="ts-punctuation-bracket">}</span>
+<span class="ts-punctuation-bracket">}</span></code></pre>
+                        </div>
+                    </div>
+
+                    <div class="language-feature">
+                        <div class="language-feature-copy">
+                            <div class="language-chip">on close</div>
+                            <h3 class="card-title">缺失与关闭语义</h3>
+                            <p class="language-copy">
+                                <span class="language-label">作用</span>
+                                写 timeout、flush、eos 阶段的判断。
+                            </p>
+                            <p class="language-copy">
+                                <span class="language-label">特点</span>
+                                不只检测“发生了什么”，也能检测“本该发生但没有发生什么”。
+                            </p>
+                        </div>
+                        <div class="code-block language-code">
+                            <div class="code-header">
+                                <span class="code-title">Close Condition</span>
+                                <span class="code-badge wpl">on close</span>
+                            </div>
+                            <pre class="ts-code"><code class="language-wfl">match<span class="ts-punctuation-bracket">&lt;</span>query_id<span class="ts-punctuation-delimiter">:</span><span class="ts-number">30s</span><span class="ts-punctuation-bracket">&gt;</span> <span class="ts-punctuation-bracket">{</span>
+    <span class="ts-keyword">on</span> <span class="ts-keyword">event</span> <span class="ts-punctuation-bracket">{</span>
+        req <span class="ts-operator">|</span> count <span class="ts-operator">&gt;=</span> <span class="ts-number">1</span><span class="ts-punctuation-delimiter">;</span>
+    <span class="ts-punctuation-bracket">}</span>
+    <span class="ts-keyword">on</span> <span class="ts-keyword">close</span> <span class="ts-punctuation-bracket">{</span>
+        resp <span class="ts-operator">&amp;&amp;</span> close_reason <span class="ts-operator">==</span> <span class="ts-string">"timeout"</span> <span class="ts-operator">|</span> count <span class="ts-operator">==</span> <span class="ts-number">0</span><span class="ts-punctuation-delimiter">;</span>
+    <span class="ts-punctuation-bracket">}</span>
+<span class="ts-punctuation-bracket">}</span></code></pre>
+                        </div>
+                    </div>
+
+                    <div class="language-feature">
+                        <div class="language-feature-copy">
+                            <div class="language-chip">join + entity</div>
+                            <h3 class="card-title">关联与归属</h3>
+                            <p class="language-copy">
+                                <span class="language-label">作用</span>
+                                关联外部窗口，并明确告警最终属于谁。
+                            </p>
+                            <p class="language-copy">
+                                <span class="language-label">特点</span>
+                                把实时事件、外部上下文和归属实体放进同一条规则链。
+                            </p>
+                        </div>
+                        <div class="code-block language-code">
+                            <div class="code-header">
+                                <span class="code-title">Join And Entity</span>
+                                <span class="code-badge vrl">join</span>
+                            </div>
+                            <pre class="ts-code"><code class="language-wfl">join geo_lookup <span class="ts-keyword-modifier">snapshot</span> <span class="ts-keyword">on</span> sip <span class="ts-operator">==</span> geo_lookup<span class="ts-punctuation-delimiter">.</span>ip
+
+<span class="ts-keyword">entity</span><span class="ts-punctuation-bracket">(</span>ip<span class="ts-punctuation-delimiter">,</span> fail<span class="ts-punctuation-delimiter">.</span>sip<span class="ts-punctuation-bracket">)</span></code></pre>
+                        </div>
+                    </div>
+
+                    <div class="language-feature">
+                        <div class="language-feature-copy">
+                            <div class="language-chip">score + yield</div>
+                            <h3 class="card-title">输出结果</h3>
+                            <p class="language-copy">
+                                <span class="language-label">作用</span>
+                                给规则评分，并产出中间结果或最终告警。
+                            </p>
+                            <p class="language-copy">
+                                <span class="language-label">特点</span>
+                                规则不只负责命中判断，还能直接定义输出结构和下游消费方式。
+                            </p>
+                        </div>
+                        <div class="code-block language-code">
+                            <div class="code-header">
+                                <span class="code-title">Score And Yield</span>
+                                <span class="code-badge wpl">yield</span>
+                            </div>
+                            <pre class="ts-code"><code class="language-wfl"><span class="ts-operator">-&gt;</span> <span class="ts-keyword">score</span><span class="ts-punctuation-bracket">(</span><span class="ts-number">70.0</span><span class="ts-punctuation-bracket">)</span>
+
+<span class="ts-keyword">yield</span> security_alerts <span class="ts-punctuation-bracket">(</span>
+    sip = fail<span class="ts-punctuation-delimiter">.</span>sip<span class="ts-punctuation-delimiter">,</span>
+    fail_count = count<span class="ts-punctuation-bracket">(</span>fail<span class="ts-punctuation-bracket">)</span><span class="ts-punctuation-delimiter">,</span>
+    risk_score = @<span class="ts-keyword">score</span>
+<span class="ts-punctuation-bracket">)</span></code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="toolchain" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">工具链闭环</h2>
+                    <p class="section-subtitle">
+                        把配置诊断、规则开发、样本生成和回放验证收进同一条链路。
+                    </p>
+                </div>
+
+                <div class="toolchain-overview">
+                    <div class="toolchain-overview-copy">
+                        <div class="comp-topology">开发到验证一条链</div>
+                        <h3>从写规则到验证上线，不再切换多套工具</h3>
+                        <p>
+                            同一套工具同时覆盖配置检查、规则调试、样本生成和回放验证，减少开发、联调和上线前检查之间的断层。
+                        </p>
+                    </div>
+                    <div class="toolchain-flow">
+                        <div class="toolchain-flow-step toolchain-flow-start">
+                            <strong>01</strong>
+                            <span>配置诊断</span>
+                        </div>
+                        <div class="toolchain-flow-step">
+                            <strong>02</strong>
+                            <span>规则开发</span>
+                        </div>
+                        <div class="toolchain-flow-step">
+                            <strong>03</strong>
+                            <span>样本生成</span>
+                        </div>
+                        <div class="toolchain-flow-step toolchain-flow-end">
+                            <strong>04</strong>
+                            <span>回放验证</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="toolchain-grid">
+                    <div class="connector-card">
+                        <div class="doc-tag">配置诊断</div>
+                        <h3>先看清最终生效配置</h3>
+                        <div class="tool-command-label">wfusion config</div>
+                        <p>
+                            直接输出最终配置、变量来源和参数差异，快速定位 overlay merge、变量展开和部署环境之间的问题。
+                        </p>
+                        <pre><code>wfusion config diff \
+  --expanded \
+  --config conf/wfusion.toml</code></pre>
+                    </div>
+
+                    <div class="connector-card">
+                        <div class="doc-tag">规则开发</div>
+                        <h3>把规则开发工作收敛到一个入口</h3>
+                        <div class="tool-command-label">wfl</div>
+                        <p>
+                            explain、lint、fmt、replay、test、verify 统一在一个 CLI 里，减少切换成本，也更适合日常迭代。
+                        </p>
+                        <pre><code>wfl verify \
+  --case brute_force \
+  --data-dir data</code></pre>
+                    </div>
+
+                    <div class="connector-card">
+                        <div class="doc-tag">样本与回放</div>
+                        <h3>用场景数据把验证补完整</h3>
+                        <div class="tool-command-label">wfgen</div>
+                        <p>
+                            围绕场景 DSL 提供数据生成、发送、校验与压测能力，让规则验证从静态样例走向可重复回放。
+                        </p>
+                        <pre><code>wfgen gen \
+  --scenario brute_force.wfg \
+  --out out/</code></pre>
+                    </div>
+
+                    <div class="connector-card editor-card">
+                        <div class="editor-card-copy">
+                            <div class="doc-tag">编辑体验</div>
+                            <h3>编辑器里直接看清规则结构</h3>
+                            <div class="tool-command-label">tree-sitter-wfl</div>
+                            <p>
+                                为 WFL 提供语法高亮支持，便于编辑器集成，也让规则阅读和修改反馈更直接。
+                            </p>
+                        </div>
+                        <pre><code>grammar  WFL
+highlight supported
+usage    editor integration</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="runtime" class="section performance-section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">运行时模型</h2>
+                    <p class="section-subtitle">
+                        WarpFusion 的运行时不是“消息直推规则”，而是以 Window 为中心组织事件时间、缓存与规则执行。
+                    </p>
+                </div>
+
+                <div class="metrics-grid">
+                    <div class="metric-card metric-primary">
+                        <div class="metric-value">2</div>
+                        <div class="metric-label">运行模式</div>
+                        <div class="metric-desc">`daemon` 实时接入，`batch` 离线回放</div>
+                    </div>
+                    <div class="metric-card metric-secondary">
+                        <div class="metric-value">3</div>
+                        <div class="metric-label">文件格式</div>
+                        <div class="metric-desc">`ndjson` / `arrow_framed` / `arrow_ipc`</div>
+                    </div>
+                    <div class="metric-card metric-accent">
+                        <div class="metric-value">1</div>
+                        <div class="metric-label">核心链路</div>
+                        <div class="metric-desc">Receiver → Router → Window → Engine → Sink</div>
+                    </div>
+                    <div class="metric-card metric-success">
+                        <div class="metric-value">N</div>
+                        <div class="metric-label">规则任务</div>
+                        <div class="metric-desc">每条 rule 独立 task，按 cursor 增量读取</div>
+                    </div>
+                </div>
+
+                <div class="comparison-grid">
+                    <div class="comparison-card">
+                        <div class="comp-topology">Window-Centric</div>
+                        <div class="comparison-copy">
+                            <h3>执行闭环</h3>
+                            <div class="pipeline">
+                                <span>Receiver</span>
+                                <span>Router</span>
+                                <span>Window</span>
+                                <span>Rule Engine</span>
+                                <span>Alert Sink</span>
+                            </div>
+                            <p>
+                                规则任务通过 cursor 从 Window
+                                增量读取数据，并用 `Notify`
+                                驱动执行，确保窗口语义直接影响规则结果。
+                            </p>
+                        </div>
+                    </div>
+                    <div class="comparison-card">
+                        <div class="comp-topology">事件时间控制</div>
+                        <div class="comparison-copy">
+                            <h3>watermark / lateness / eviction</h3>
+                            <ul class="bullet-list">
+                                <li>支持基于事件时间的 watermark</li>
+                                <li>支持 `allowed_lateness` 和迟到丢弃策略</li>
+                                <li>支持按时间和内存做窗口驱逐</li>
+                                <li>关闭顺序按生产者先停、消费者后停设计，避免丢告警</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="model" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">三文件模型</h2>
+                    <p class="section-subtitle">
+                        逻辑定义、检测规则和运行参数分层，是 WarpFusion
+                        最重要的产品边界之一。
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="card">
+                        <h3 class="card-title">`.wfs` Window Schema</h3>
+                        <p class="card-description">
+                            定义 stream、time、over 与字段 schema，是规则和运行时共享的逻辑数据契约。
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">`.wfl` Detection Rule</h3>
+                        <p class="card-description">
+                            定义 `events`、`match`、`join`、`entity`、`yield`，把检测语义固定在可解释的 DSL 里。
+                        </p>
+                    </div>
+                    <div class="card">
+                        <h3 class="card-title">`fusion.toml` Runtime Config</h3>
+                        <p class="card-description">
+                            定义 mode、sources、runtime、window defaults、vars 和
+                            sinks，把部署参数和业务规则解耦。
+                        </p>
+                    </div>
+                </div>
+
+                <div class="code-comparison">
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Window Schema</span>
+                            <span class="code-badge wpl">security.wfs</span>
+                        </div>
+                        <pre><code>window auth_events {
+    stream = "syslog"
+    time = event_time
+    over = 5m
+
+    fields {
+        sip: ip
+        username: chars
+        action: chars
+        event_time: time
+    }
+}</code></pre>
+                    </div>
+
+                    <div class="code-block">
+                        <div class="code-header">
+                            <span class="code-title">Runtime Config</span>
+                            <span class="code-badge vrl">fusion.toml</span>
+                        </div>
+                        <pre><code>mode = "daemon"
+sinks = "sinks"
+
+[[sources]]
+type = "tcp"
+name = "ingress_tcp"
+listen = "tcp://127.0.0.1:9800"
+
+[runtime]
+executor_parallelism = 2
+rule_exec_timeout = "30s"
+schemas = "schemas/*.wfs"
+rules   = "rules/*.wfl"</code></pre>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="scenarios" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">适合什么场景</h2>
+                    <p class="section-subtitle">
+                        WarpFusion 更适合实时关联与风险分析，不追求把所有问题都收敛成一个通用流平台。
+                    </p>
+                </div>
+                <div class="features-grid">
+                    <div class="card">
+                        <div class="card-icon">1</div>
+                        <h3 class="card-title">多步攻击链检测</h3>
+                        <p class="card-description">
+                            例如 5 分钟内同一源 IP 连续登录失败 3 次后又发起扫描或横向探测。
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">2</div>
+                        <h3 class="card-title">缺失与超时检测</h3>
+                        <p class="card-description">
+                            例如请求已经发出，但在预期窗口内没有收到响应、确认或回执。
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">3</div>
+                        <h3 class="card-title">上游打分，下游聚合</h3>
+                        <p class="card-description">
+                            先对单条事件做语义 enrichment 和风险评分，再按实体或时间窗口聚合判断。
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">4</div>
+                        <h3 class="card-title">离线复盘与回放验证</h3>
+                        <p class="card-description">
+                            用 batch、`wfl verify` 和 `wfgen`
+                            在样本上复盘规则行为，并保持与线上语义一致。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="quickstart" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">快速开始</h2>
+                    <p class="section-subtitle">
+                        官网上的上手路径应该先帮助读者建立模型，再让读者跑通闭环。
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <div class="card">
+                        <div class="card-icon">1</div>
+                        <h3 class="card-title">理解三文件模型</h3>
+                        <p class="card-description">
+                            先建立 `.wfs`、`.wfl`、`fusion.toml`
+                            的职责边界，避免把业务规则和运行参数写在同一层。
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">2</div>
+                        <h3 class="card-title">跑通最小项目</h3>
+                        <p class="card-description">
+                            用最小 schema、rule 和 config 启动 `wfusion`
+                            ，先理解实时接入或离线回放的执行闭环。
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">3</div>
+                        <h3 class="card-title">用 `wfl` 验证规则</h3>
+                        <p class="card-description">
+                            优先 explain、lint、replay、test，把规则语义先定稳，再接入真实流量。
+                        </p>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon">4</div>
+                        <h3 class="card-title">用 `wfgen` 建立闭环</h3>
+                        <p class="card-description">
+                            通过 gen → send → verify
+                            把规则正确性和运行时输出对拍起来。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="docs" class="section">
+            <div class="container">
+                <div class="section-header">
+                    <h2 class="section-title">文档地图</h2>
+                    <p class="section-subtitle">
+                        首页只讲产品主信息，深入细节时再进入这些文档入口。
+                    </p>
+                </div>
+
+                <div class="features-grid">
+                    <a
+                        class="card doc-card"
+                        href="../wp-reactor/docs/user-guide/quick-start.md"
+                    >
+                        <div class="doc-tag">Guide</div>
+                        <h3 class="card-title">快速开始</h3>
+                        <p class="card-description">
+                            先理解项目结构、三文件模型、最小规则和启动命令。
+                        </p>
+                    </a>
+                    <a
+                        class="card doc-card"
+                        href="../wp-reactor/docs/user-guide/runtime-config.md"
+                    >
+                        <div class="doc-tag">Guide</div>
+                        <h3 class="card-title">运行时配置</h3>
+                        <p class="card-description">
+                            查看 mode、sources、window defaults、vars 和路径语义。
+                        </p>
+                    </a>
+                    <a
+                        class="card doc-card"
+                        href="../wp-reactor/docs/user-guide/tooling.md"
+                    >
+                        <div class="doc-tag">Guide</div>
+                        <h3 class="card-title">开发与测试工具</h3>
+                        <p class="card-description">
+                            了解 `wfusion config`、`wfl`、`wfgen` 的命令面和职责。
+                        </p>
+                    </a>
+                    <a
+                        class="card doc-card"
+                        href="../wp-reactor/docs/design/architecture.md"
+                    >
+                        <div class="doc-tag">Design</div>
+                        <h3 class="card-title">并发架构</h3>
+                        <p class="card-description">
+                            查看 Window-Centric Cursor+Notify
+                            模型、两阶段关闭和任务结构。
+                        </p>
+                    </a>
+                    <a
+                        class="card doc-card"
+                        href="../wp-reactor/docs/design/wfl-design.md"
+                    >
+                        <div class="doc-tag">Design</div>
+                        <h3 class="card-title">WFL 设计方案</h3>
+                        <p class="card-description">
+                            查看语言能力边界、实现状态和后续演进方向。
+                        </p>
+                    </a>
+                    <a
+                        class="card doc-card"
+                        href="../wp-reactor/docs/learning-path.md"
+                    >
+                        <div class="doc-tag">Map</div>
+                        <h3 class="card-title">代码学习路径</h3>
+                        <p class="card-description">
+                            按 crate 和依赖层次组织的阅读顺序，适合继续深入源码。
+                        </p>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section cta-section">
+            <div class="container">
+                <div class="cta-card">
+                    <div>
+                        <h2 class="section-title">一句话总结</h2>
+                        <p class="section-subtitle">
+                            WarpFusion 是一个以 WFL 为核心、以 Window
+                            为中心，同时覆盖实时接入、离线回放、规则验证与配置诊断的轻量实时关联计算引擎。
+                        </p>
+                    </div>
+                    <div class="btn-group justify-center">
+                        <a
+                            href="../wp-reactor/docs/user-guide/quick-start.md"
+                            class="btn btn-primary"
+                            >查看快速开始</a
+                        >
+                        <a
+                            href="../wp-reactor/docs/design/warp-fusion.md"
+                            class="btn btn-secondary"
+                            >查看设计文档</a
+                        >
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="app.js"></script>
+    </body>
+</html>
